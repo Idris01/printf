@@ -1,7 +1,4 @@
-#include <string.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdbool.h>
+#include "main.h"
 
 /**
  * _printf - Print formated string
