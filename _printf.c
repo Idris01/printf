@@ -3,7 +3,6 @@
 /**
  * _printf - Print formated string
  * @format: pointer to string
- *
  * Return: integer the number of printed characters
  */
 
