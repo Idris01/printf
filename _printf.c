@@ -13,8 +13,10 @@ int _printf(const char *format, ...)
 	bool flag = 0;
 	char pres_char, *arg_string, arg_char;
 
-	if (format == NULL)
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (char_count);
+
 	size = strlen(format);
 	va_start(arguments, format);
 	for (; index < size; index++)
