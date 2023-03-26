@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	char pres_char, *arg_string, arg_char;
 
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL) /* || (format[0] == '%' && format[1] == '\0')) */
 		return (char_count);
 
 	size = strlen(format);
