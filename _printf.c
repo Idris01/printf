@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 			flag = 1;
 		else
 		{
-			write(0, format + index, 1); /* get address at index */
+			write(1, format + index, 1); /* get address at index */
 			char_count++;
 		}
 	}

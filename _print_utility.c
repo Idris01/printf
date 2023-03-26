@@ -12,7 +12,7 @@ int _print_char(const char *c)
 {
 	if (c == NULL)
 		return (0);
-	write(0, c, 1);
+	write(1, c, 1);
 	return (1);
 }
 
@@ -30,6 +30,6 @@ int _print_str(const char *str)
 	if (str == NULL)
 		return (0);
 	size = strlen(str);
-	write(0, str, size);
+	write(1, str, size);
 	return (size);
 }
