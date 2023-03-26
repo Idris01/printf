@@ -7,7 +7,8 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-
 int _printf(const char *format, ...);
+int _print_char(const char *c);
+int _print_str(const char *str);
 
 #endif

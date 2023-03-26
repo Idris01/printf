@@ -27,20 +27,15 @@ int _printf(const char *format, ...)
 			if (pres_char == 'c')
 			{
 				arg_char = va_arg(arguments, int); /* char is promoted to int */
-				write(0, &arg_char, 1); /* print arg_char using its memory address */
-				char_count++;
+				char_count += _print_char(&arg_char);
 			}
 			else if (pres_char == 's')
 			{
 				arg_string = va_arg(arguments, char *);
-				write(0, arg_string, strlen(arg_string));
-				char_count += strlen(arg_string);
+				char_count += _print_str(arg_string);
 			}
 			else if (pres_char == '%')
-			{
-				write(0, format + index, 1);
-				char_count++;
-			}
+				char_count += _print_char(format + index);
 			flag = 0;
 		}
 		else if (pres_char == '%')
