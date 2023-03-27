@@ -10,9 +10,10 @@
 int _printf(const char *format, ...)
 {
 	va_list arguments;
-	int size, index = 0, char_count = 0;
-	bool flag = 0;
-	char pres_char, *arg_string, arg_char;
+	int size, index = 0, char_count = 0, counter, flag = 0;
+	char pres_char;
+	func format_func[] = {{"c", _print_char}, {"s", _print_str},
+		{"i", _print_int}, {"d", _print_int}, {NULL, NULL}};
 
 	if (format == NULL)
 		return (char_count);
@@ -23,29 +24,27 @@ int _printf(const char *format, ...)
 		pres_char = format[index];
 		if (flag) /* the character at format[index - 1] is '%' */
 		{
-			switch (pres_char)
+			counter = 0;
+			for (; counter >= 0; counter++)
 			{
-				case 'c':
-					arg_char = va_arg(arguments, int); /* char is promoted to int */
-					char_count += _print_char(&arg_char);
+				if (format_func[counter].c == NULL)
+				{	/* format is not defined hence print both the flag and the pres_char */
+					char_count += _print_ord_char(format + (index - 1));
+					char_count += _print_ord_char(format + index);
 					break;
-				case 's':
-					arg_string = va_arg(arguments, char *);
-					char_count += _print_str(arg_string);
+				}
+				else if (*(format_func[counter].c) == pres_char)
+				{
+					char_count += format_func[counter].f((void *)&arguments);
 					break;
-				case '%':
-					char_count += _print_char(format + index);
-					break;
-				default:
-					char_count += _print_char(format + (index - 1));
-					char_count += _print_char(format + index);
+				}
 			}
 			flag = 0;
 		}
 		else if (pres_char == '%')
 			flag = 1;
 		else
-			char_count += _print_char(format + index);
+			char_count += _print_ord_char(format + index);
 	}
 	va_end(arguments); /* release the memory */
 	return (char_count);
