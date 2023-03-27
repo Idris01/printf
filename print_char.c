@@ -15,6 +15,9 @@ int print_char(va_list val)
 
 	c = va_arg(val, int);
 
+	if (c == NULL)
+		return (0);
+
 	_putchar(c);
 
 	return (1);

@@ -17,8 +17,10 @@ int print_string(va_list val)
 	s = va_arg(val, char *);
 	len = 0;
 
-	if (s == NULL)
+	if (c == NULL) {
+		return (0);
 		s = "(null)";
+	}
 
 	while (s[len])
 	{
