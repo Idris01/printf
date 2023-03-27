@@ -1,52 +1,76 @@
 #include "main.h"
+#include "match_specifier_to_function.h"
 
 /**
- * _printf - Print formated string
- * @format: pointer to string
- * Return: integer the number of printed characters
+ * _printf - is a function that formats and prints data
+ *
+ * @format: identifier to look for - (char, string, int)
+ *
+ * Return: the length of the output string.
  */
 
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
 	va_list arguments;
-	int size, index = 0, char_count = 0, counter, flag = 0;
-	char pres_char;
-	func format_func[] = {{"c", _print_char}, {"s", _print_str},
-		{"i", _print_int}, {"d", _print_int}, {NULL, NULL}};
+	int (*f)(va_list);
+	unsigned int len = 1;
 
+	int i;
 
-	if (format == NULL) /* || (format[0] == '%' && format[1] == '\0')) */
-		return (char_count);
+	if (format == NULL)
+		return (-1);
 
-	size = strlen(format);
 	va_start(arguments, format);
-	for (; index < size; index++)
+	len = 0;
+
+	i = 0;
+	while (format[i])
 	{
-		pres_char = format[index];
-		if (flag) /* the character at format[index - 1] is '%' */
+		/* For ordinary characters */
+		while (format[i] != '%' && format[i])
 		{
-			counter = 0;
-			for (; counter >= 0; counter++)
-			{
-				if (format_func[counter].c == NULL)
-				{	/* format is not defined hence print both the flag and the pres_char */
-					char_count += _print_ord_char(format + (index - 1));
-					char_count += _print_ord_char(format + index);
-					break;
-				}
-				else if (*(format_func[counter].c) == pres_char)
-				{
-					char_count += format_func[counter].f((void *)&arguments);
-					break;
-				}
-			}
-			flag = 0;
+			_putchar(format[i]);
+			++len;
+			++i;
 		}
-		else if (pres_char == '%')
-			flag = 1;
+
+		/* If the string is completely ordinary, we should reach the end and return. */
+		if (format[i] == '\0')
+			return (len);
+
+		/* If you reach here, the string has format specifiers... */
+		/* We will attempt to find and match them... */
+		f = match_specifier_to_function(&format[i + 1]);
+		/* The above line sends the format specifier to the function dictionary */
+		/* and get the function we need to send it to. */
+
+		/* If we dont match any, `f' is NULL */
+
+		/* In this case, we find a match and perform calculations accordingly */
+		if (f != NULL)
+		{
+			/* Add the result to th string length `len' */
+			len += f(arguments);
+			i += 2;
+			continue;
+		}
+
+		/* If this next character is empty */
+		if (!format[i + 1])
+			return (-1);
+
+		/* We have a percentage therefore _putchar it and increase string length */
+		_putchar(format[i]);
+		++len;
+
+		/* Since we have used one '%', let's remove the other and continue */
+		if (format[i + 1] == '%')
+			i += 2;
 		else
-			char_count += _print_ord_char(format + index);
+			++i;
 	}
-	va_end(arguments); /* release the memory */
-	return (char_count);
+
+	va_end(arguments);
+
+	return (len);
 }
