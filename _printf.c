@@ -26,6 +26,7 @@ int _printf(const char * const format, ...)
 	i = 0;
 	while (format[i])
 	{
+		/* For ordinary characters */
 		while (format[i] != '%' && format[i])
 		{
 			_putchar(format[i]);
@@ -33,24 +34,36 @@ int _printf(const char * const format, ...)
 			++i;
 		}
 
+		/* If the string is completely ordinary, we should reach the end and return. */
 		if (format[i] == '\0')
 			return (len);
 
+		/* If you reach here, the string has format specifiers... */
+		/* We will attempt to find and match them... */
 		f = match_specifier_to_function(&format[i + 1]);
+		/* The above line sends the format specifier to the function dictionary */
+		/* and get the function we need to send it to. */
 
+		/* If we dont match any, `f' is NULL */
+
+		/* In this case, we find a match and perform calculations accordingly */
 		if (f != NULL)
 		{
+			/* Add the result to th string length `len' */
 			len += f(arguments);
 			i += 2;
 			continue;
 		}
 
+		/* If this next character is empty */
 		if (!format[i + 1])
 			return (-1);
 
+		/* We have a percentage therefore _putchar it and increase string length */
 		_putchar(format[i]);
 		++len;
 
+		/* Since we have used one '%', let's remove the other and continue */
 		if (format[i + 1] == '%')
 			i += 2;
 		else
