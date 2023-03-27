@@ -9,13 +9,12 @@
  * Return: the length of the output string.
  */
 
-int _printf(const char * const format, ...)
+int _printf(const char *format, ...)
 {
 	va_list arguments;
 	int (*f)(va_list);
-	unsigned int len;
 
-	int i;
+	unsigned int len, i;
 
 	if (format == NULL)
 		return (-1);

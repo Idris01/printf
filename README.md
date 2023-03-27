@@ -2,5 +2,5 @@
 This repository houses an implementation of `printf' and it's suppporting libraries
 
 ## Collaborators
-Idris Adebowale
-Olorundamisi Dunmade
+- Idris Adebowale
+- Olorundamisi Dunmade
