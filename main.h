@@ -7,20 +7,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/**
-  * struct specifier_dict - struct format - structure for dictionary containing specifier
-  * and their respective functions
-  *
-  * @specifier: type char pointer of the specifier - could be c, s or %
-  * @function: type pointer to function for the conversion specifier
-  */
-
-typedef struct format
-{
-        char *specifier;
-        int (*function)(va_list);
-} specifier_dict;
-
 
 int _printf(const char *format, ...);
 int _putchar(char c);
