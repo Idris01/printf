@@ -3,7 +3,6 @@
 /**
  * _printf - Print formated string
  * @format: pointer to string
- *
  * Return: integer the number of printed characters
  */
 
@@ -15,8 +14,10 @@ int _printf(const char *format, ...)
 	func format_func[] = {{"c", _print_char}, {"s", _print_str},
 		{"i", _print_int}, {"d", _print_int}, {NULL, NULL}};
 
-	if (format == NULL)
+
+	if (format == NULL) /* || (format[0] == '%' && format[1] == '\0')) */
 		return (char_count);
+
 	size = strlen(format);
 	va_start(arguments, format);
 	for (; index < size; index++)
