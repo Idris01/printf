@@ -1,6 +1,6 @@
+#include <stdarg.h>
+#include <unistd.h>
 #include "main.h"
-
-
 /**
   * find_function - function that finds formats for _printf
   * calls the corresponding function.
@@ -26,16 +26,11 @@ int (*find_function(const char *format))(va_list)
 	}
 	return (NULL);
 }
-
-
 /**
- * _printf - is a function that formats and prints data
- *
- * @format: identifier to look for - (char, string, int)
- *
- * Return: the length of the output string.
- */
-
+  * _printf - function that produces output according to a format.
+  * @format: format (char, string, int, decimal)
+  * Return: size the output text;
+  */
 int _printf(const char *format, ...)
 {
 	va_list ap;
