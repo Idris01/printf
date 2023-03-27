@@ -1,76 +1,67 @@
 #include "main.h"
-#include "match_specifier_to_function.h"
 
 /**
- * _printf - is a function that formats and prints data
- *
- * @format: identifier to look for - (char, string, int)
- *
- * Return: the length of the output string.
- */
+  * match_specifier_to_function - is function that finds formats for _printf
+  * and matches it the corresponding function.
+  *
+  * @format: format (char, string, int, decimal)
+  * Return: NULL or function associated ;
+  */
 
-int _printf(const char * const format, ...)
+int (*match_specifier_to_function(const char *format))(va_list)
 {
-	va_list arguments;
-	int (*f)(va_list);
-	unsigned int len;
+        unsigned int i = 0;
+        specifier_dict dict[] = {
+                {"c", print_char},
+                {"s", print_string},
+                {NULL, NULL}
+        };
 
-	int i;
-
-	if (format == NULL)
-		return (-1);
-
-	va_start(arguments, format);
-	len = 0;
-
-	i = 0;
-	while (format[i])
-	{
-		/* For ordinary characters */
-		while (format[i] != '%' && format[i])
-		{
-			_putchar(format[i]);
-			++len;
-			++i;
-		}
-
-		/* If the string is completely ordinary, we should reach the end and return. */
-		if (format[i] == '\0')
-			return (len);
-
-		/* If you reach here, the string has format specifiers... */
-		/* We will attempt to find and match them... */
-		f = match_specifier_to_function(&format[i + 1]);
-		/* The above line sends the format specifier to the function dictionary */
-		/* and get the function we need to send it to. */
-
-		/* If we dont match any, `f' is NULL */
-
-		/* In this case, we find a match and perform calculations accordingly */
-		if (f != NULL)
-		{
-			/* Add the result to th string length `len' */
-			len += f(arguments);
-			i += 2;
-			continue;
-		}
-
-		/* If this next character is empty */
-		if (!format[i + 1])
-			return (-1);
-
-		/* We have a percentage therefore _putchar it and increase string length */
-		_putchar(format[i]);
-		++len;
-
-		/* Since we have used one '%', let's remove the other and continue */
-		if (format[i + 1] == '%')
-			i += 2;
-		else
-			++i;
-	}
-
-	va_end(arguments);
-
-	return (len);
+        while (dict[i].specifier)
+        {
+                if (dict[i].specifier[0] == (*format))
+                        return (dict[i].function);
+                i++;
+        }
+        return (NULL);
 }
+
+int _printf(const char *format, ...)
+{
+        va_list arguments;
+        int (*f)(va_list);
+        unsigned int i = 0, len = 0;
+
+        if (format == NULL)
+                return (-1);
+        va_start(arguments, format);
+        while (format[i])
+        {
+                while (format[i] != '%' && format[i])
+                {
+                        _putchar(format[i]);
+                        len++;
+                        i++;
+                }
+                if (format[i] == '\0')
+                        return (len);
+                f = match_specifier_to_function(&format[i + 1]);
+                if (f != NULL)
+                {
+                        len += f(arguments);
+                        i += 2;
+                        continue;
+                }
+                if (!format[i + 1])
+                        return (-1);
+                _putchar(format[i]);
+                len++;
+                if (format[i + 1] == '%')
+                        i += 2;
+                else
+                        i++;
+        }
+        va_end(arguments);
+        return (len);
+}
+
