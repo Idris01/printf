@@ -1,6 +1,6 @@
 all:
 	gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c
 run:
-	./a.out	
+	./a.out
 clean:
 	rm a.out

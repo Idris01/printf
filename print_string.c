@@ -19,7 +19,7 @@ int print_string(va_list val)
 
 	if (s == NULL)
 		s = "(null)";
-	
+
 	while (s[len])
 	{
 		_putchar(s[len]);
