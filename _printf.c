@@ -1,5 +1,32 @@
 #include "main.h"
-#include "match_specifier_to_function.h"
+
+
+/**
+  * find_function - function that finds formats for _printf
+  * calls the corresponding function.
+  * @format: format (char, string, int, decimal)
+  * Return: NULL or function associated ;
+  */
+int (*find_function(const char *format))(va_list)
+{
+	unsigned int i = 0;
+	code_f find_f[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"i", print_int},
+		{"d", print_dec},
+		{NULL, NULL}
+	};
+
+	while (find_f[i].sc)
+	{
+		if (find_f[i].sc[0] == (*format))
+			return (find_f[i].f);
+		i++;
+	}
+	return (NULL);
+}
+
 
 /**
  * _printf - is a function that formats and prints data
@@ -11,65 +38,39 @@
 
 int _printf(const char *format, ...)
 {
-	va_list arguments;
+	va_list ap;
 	int (*f)(va_list);
+	unsigned int i = 0, cprint = 0;
 
-	unsigned int len, i;
-
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
-
-	va_start(arguments, format);
-	len = 0;
-
-	i = 0;
+	va_start(ap, format);
 	while (format[i])
 	{
-		/* For ordinary characters */
 		while (format[i] != '%' && format[i])
 		{
 			_putchar(format[i]);
-			++len;
-			++i;
+			cprint++;
+			i++;
 		}
-
-		/* If the string is completely ordinary, we should reach the end and return. */
 		if (format[i] == '\0')
-			return (len);
-
-		/* If you reach here, the string has format specifiers... */
-		/* We will attempt to find and match them... */
-		f = match_specifier_to_function(&format[i + 1]);
-		/* The above line sends the format specifier to the function dictionary */
-		/* and get the function we need to send it to. */
-
-		/* If we dont match any, `f' is NULL */
-
-		/* In this case, we find a match and perform calculations accordingly */
+			return (cprint);
+		f = find_function(&format[i + 1]);
 		if (f != NULL)
 		{
-			/* Add the result to th string length `len' */
-			len += f(arguments);
+			cprint += f(ap);
 			i += 2;
 			continue;
 		}
-
-		/* If this next character is empty */
 		if (!format[i + 1])
 			return (-1);
-
-		/* We have a percentage therefore _putchar it and increase string length */
 		_putchar(format[i]);
-		++len;
-
-		/* Since we have used one '%', let's remove the other and continue */
+		cprint++;
 		if (format[i + 1] == '%')
 			i += 2;
 		else
-			++i;
+			i++;
 	}
-
-	va_end(arguments);
-
-	return (len);
+	va_end(ap);
+	return (cprint);
 }

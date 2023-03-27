@@ -2,20 +2,18 @@
 
 
 /**
- * print_string - prints a string to stdout
+ * print_string - writes the character c to stdout
+ * @s: The string to print
  *
- * @val: argument
- *
- * Return: the length of the string.
+ * Return: 1.
  */
 
 int print_string(va_list val)
 {
 	char *s;
-	int len;
+	int  len = 0;
 
 	s = va_arg(val, char *);
-	len = 0;
 
 	if (s == NULL)
 		s = "(null)";
@@ -23,8 +21,7 @@ int print_string(va_list val)
 	while (s[len])
 	{
 		_putchar(s[len]);
-		++len;
+		len++;
 	}
-
 	return (len);
 }

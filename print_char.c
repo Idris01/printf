@@ -2,11 +2,11 @@
 
 
 /**
- * print_char - write char c to stdout
+ * print_char - writes the character c to stdout
  *
- * @val: argument
+ * @c: The character to print
  *
- * Return 1.
+ * Return: 1.
  */
 
 int print_char(va_list val)
