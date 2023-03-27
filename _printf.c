@@ -13,7 +13,7 @@ int _printf(const char * const format, ...)
 {
 	va_list arguments;
 	int (*f)(va_list);
-	unsigned int len = 1;
+	unsigned int len = 0;
 
 	int i;
 
