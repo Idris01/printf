@@ -35,6 +35,8 @@ int (*match_specifier_to_function(const char *format))(va_list)
 	specifier_dict dict[] = {
 		{"c", print_char},
 		{"s", print_string},
+		{"i", print_int},
+		{"d", print_dec},
 		{NULL, NULL}
 	};
 
