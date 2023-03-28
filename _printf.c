@@ -38,7 +38,7 @@ int (*match_specifier_to_function(const char *format))(va_list)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int (*f)(va_list);
+	int (*val)(va_list);
 	unsigned int i = 0, len = 0;
 
 	if (format == NULL)
@@ -54,8 +54,8 @@ int _printf(const char *format, ...)
 		}
 		if (format[i] == '\0')
 			return (len);
-		f = match_specifier_to_function(&format[i + 1]);
-		if (f != NULL)
+		val = match_specifier_to_function(&format[i + 1]);
+		if (val != NULL)
 		{
 			len += f(args);
 			i += 2;
