@@ -12,7 +12,7 @@ int print_ptr_helper(unsigned long int num)
 	unsigned long int uf_d = num;
 
 	long int *arr;
-	long int idx, cnt = 0;
+	long int i, cnt = 0;
 
 	while (num / 16 != 0)
 	{
@@ -23,16 +23,16 @@ int print_ptr_helper(unsigned long int num)
 
 	arr = malloc(cnt * sizeof(long int));
 
-	for (idx = 0; idx < cnt; idx++)
+	for (i = 0; i < cnt; i++)
 	{
-		arr[idx] = uf_d % 16;
+		arr[i] = uf_d % 16;
 		uf_d /= 16;
 	}
-	for (idx = cnt - 1; idx >= 0; idx--)
+	for (i = cnt - 1; i >= 0; i--)
 	{
-		if (arr[idx] > 9)
-			arr[idx] = arr[idx] + 39;
-		_putchar(arr[idx] + '0');
+		if (arr[i] > 9)
+			arr[i] = arr[i] + 39;
+		_putchar(arr[i] + '0');
 	}
 
 	free(arr);
@@ -42,7 +42,7 @@ int print_ptr_helper(unsigned long int num)
 
 
 /**
- * print_ptr - print a pointer
+ * print_ptr - print a pointer in hexadecimals
  * @p: pointer
  * Return: cnt.
  */
@@ -53,16 +53,16 @@ int print_ptr(va_list p)
 	char *s = "(nil)";
 	long int helper;
 	int result;
-	int idx;
+	int i;
 
 	val = va_arg(p, void*);
 	if (val == NULL)
 	{
-		for (idx = 0; s[idx] != '\0'; idx++)
+		for (i = 0; s[i] != '\0'; i++)
 		{
-			_putchar(s[idx]);
+			_putchar(s[i]);
 		}
-		return (idx);
+		return (i);
 	}
 
 	helper = (unsigned long int)val;
