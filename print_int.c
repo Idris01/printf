@@ -10,7 +10,7 @@
 
 int print_int(va_list i)
 {
-	int len, powten, index, digit, n, count = 0, num;
+	int len, exp, index, digit, n, count = 0, num;
 
 	n = va_arg(i, int);
 	if (n != 0)
@@ -27,19 +27,19 @@ int print_int(va_list i)
 			num /= 10;
 			len++;
 		}
-		powten = 1;
+		exp = 1;
 		for (index = 1; index <= len - 1; index++)
-			powten *= 10;
+			exp *= 10;
 		for (index = 1; index <= len; index++)
 		{
-			digit = n / powten;
+			digit = n / exp;
 			if (n < 0)
 				_putchar((digit * -1) + 48);
 			else
 				_putchar(digit + '0');
 			count++;
-			n -= digit * powten;
-			powten /= 10;
+			n -= digit * exp;
+			exp /= 10;
 		}
 	}
 	else
