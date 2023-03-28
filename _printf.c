@@ -19,9 +19,9 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
-	while (dict[i].sc)
+	while (dict[i].specifier)
 	{
-		if (dict[i].sc[0] == (*format))
+		if (dict[i].specifier[0] == (*format))
 			return (dict[i].f);
 		i++;
 	}

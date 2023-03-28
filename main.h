@@ -25,7 +25,7 @@ int print_dec(va_list d);
 
 typedef struct code_format
 {
-	char *sc;
+	char *specifier;
 	int (*f)(va_list);
 } code_f;
 
