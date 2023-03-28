@@ -34,7 +34,9 @@ int print_ptr_helper(unsigned long int num)
 			arr[idx] = arr[idx] + 39;
 		_putchar(arr[idx] + '0');
 	}
+
 	free(arr);
+
 	return (cnt);
 }
 
