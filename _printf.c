@@ -8,7 +8,7 @@
 int (*match_specifier_to_function(const char *format))(va_list)
 {
 	unsigned int i = 0;
-	code_f find_f[] = {
+	specifier_dict find_f[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"i", print_int},
@@ -16,10 +16,10 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
-	while (find_f[i].sc)
+	while (find_f[i].specifier)
 	{
-		if (find_f[i].sc[0] == (*format))
-			return (find_f[i].f);
+		if (find_f[i].specifier[0] == (*format))
+			return (find_f[i].function);
 		i++;
 	}
 	return (NULL);

@@ -17,17 +17,18 @@ int print_dec(va_list d);
 
 
 /**
-  * struct code_format - Struct format
+  * struct specifier_dict - struct format - structure for dictionary containing specifier
+  * and their respective functions
   *
-  * @sc: The specifiers
-  * @f: The function associated
+  * @specifier: type char pointer of the specifier - could be c, s or %
+  * @function: type pointer to function for the conversion specifier
   */
 
-typedef struct code_format
+typedef struct format
 {
-	char *sc;
-	int (*f)(va_list);
-} code_f;
+	char *specifier;
+	int (*function)(va_list);
+} specifier_dict;
 
 
 #endif /* MAIN_H */
