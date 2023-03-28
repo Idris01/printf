@@ -16,18 +16,4 @@ int print_int(va_list i);
 int print_dec(va_list d);
 
 
-/**
- * struct code_format - Struct format
- *
- * @sc: The specifiers
- * @f: The function associated
- */
-
-typedef struct code_format
-{
-	char *specifier;
-	int (*function)(va_list);
-} specifier_dict;
-
-
 #endif /* MAIN_H */
