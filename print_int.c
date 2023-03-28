@@ -2,11 +2,10 @@
 
 
 /**
-* print_int - function that prints an integer
-* @i: integer to print
-* Descriptions: prints digit with _putchar
-* Return: size the output text
-*/
+ * print_int - prints integer
+ * @i: integer to print
+ * Return: number of characters printed
+ */
 
 int print_int(va_list i)
 {
