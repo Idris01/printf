@@ -16,18 +16,18 @@ int print_int(va_list i);
 int print_dec(va_list d);
 
 
-/**                                       
-  * struct code_format - Struct format    
-  *                                       
-  * @sc: The specifiers                   
-  * @f: The function associated           
-  */                                      
+/**
+* struct code_format - Struct format
+*
+* @sc: The specifiers
+* @f: The function associated
+*/
 
-typedef struct code_format                
-{                                         
-        char *sc;                         
-        int (*f)(va_list);                
-} code_f;                                 
+typedef struct code_format
+{
+        char *sc;
+        int (*f)(va_list);
+} code_f;
                                           
 
 #endif /* MAIN_H */
