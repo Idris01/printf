@@ -22,7 +22,7 @@ int (*match_specifier_to_function(const char *format))(va_list)
 	while (dict[i].specifier)
 	{
 		if (dict[i].specifier[0] == (*format))
-			return (dict[i].f);
+			return (dict[i].function);
 		i++;
 	}
 	return (NULL);
