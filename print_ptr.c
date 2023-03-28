@@ -62,7 +62,7 @@ int print_ptr(va_list p)
 		}
 		return (idx);
 	}
-	helper = (unsigned long int)val
+	helper = (unsigned long int)val;
 
 	_putchar('0');
 	_putchar('x');
