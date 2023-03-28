@@ -1,5 +1,3 @@
-#include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
 /**
   * find_function - function that finds formats for _printf
@@ -33,39 +31,39 @@ int (*find_function(const char *format))(va_list)
   */
 int _printf(const char *format, ...)
 {
-	va_list ap;
+	va_list args;
 	int (*f)(va_list);
-	unsigned int i = 0, cprint = 0;
+	unsigned int i = 0, len = 0;
 
 	if (format == NULL)
 		return (-1);
-	va_start(ap, format);
+	va_start(args, format);
 	while (format[i])
 	{
 		while (format[i] != '%' && format[i])
 		{
 			_putchar(format[i]);
-			cprint++;
+			len++;
 			i++;
 		}
 		if (format[i] == '\0')
-			return (cprint);
+			return (len);
 		f = find_function(&format[i + 1]);
 		if (f != NULL)
 		{
-			cprint += f(ap);
+			len += f(args);
 			i += 2;
 			continue;
 		}
 		if (!format[i + 1])
 			return (-1);
 		_putchar(format[i]);
-		cprint++;
+		len++;
 		if (format[i + 1] == '%')
 			i += 2;
 		else
 			i++;
 	}
-	va_end(ap);
-	return (cprint);
+	va_end(args);
+	return (len);
 }
