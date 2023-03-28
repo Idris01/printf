@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 		val = match_specifier_to_function(&format[i + 1]);
 		if (val != NULL)
 		{
-			len += f(args);
+			len += val(args);
 			i += 2;
 			continue;
 		}
