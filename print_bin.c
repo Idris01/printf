@@ -11,7 +11,7 @@
 int print_bin(va_list b)
 {
 	unsigned int len;
-	unsigned exp, index, digit, n, num;
+	unsigned int exp, index, digit, n, num;
 	int count;
 
 	count = 0;
