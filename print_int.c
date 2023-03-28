@@ -10,7 +10,7 @@
 
 int print_int(va_list i)
 {
-	int len, exp, index, digit, n, count = 0, num;
+	int len, exp, index, digit, n, num, count = 0;
 
 	n = va_arg(i, int);
 	if (n != 0)
