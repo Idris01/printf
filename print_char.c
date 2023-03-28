@@ -1,17 +1,19 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+
+
 /**
  * print_char - writes the character c to stdout
- * @c: The character to print
- *
+ * @c: character to print
  * Return: 1.
  */
+
 int print_char(va_list c)
 {
-	unsigned char my_char;
+	unsigned char val;
 
-	my_char = va_arg(c, int);
-	_putchar(my_char);
+	val = va_arg(c, int);
+
+	_putchar(val);
+
 	return (1);
 }

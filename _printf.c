@@ -1,14 +1,17 @@
 #include "main.h"
+
 /**
-  * match_specifier_to_function - function that finds formats for _printf
-  * calls the corresponding function.
+  * match_specifier_to_function - is function that finds formats for _printf
+  * and matches it the corresponding function.
+  *
   * @format: format (char, string, int, decimal)
   * Return: NULL or function associated ;
   */
+
 int (*match_specifier_to_function(const char *format))(va_list)
 {
 	unsigned int i = 0;
-	code_f find_f[] = {
+	code_f dict[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"i", print_int},
@@ -16,19 +19,22 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
-	while (find_f[i].sc)
+	while (dict[i].sc)
 	{
-		if (find_f[i].sc[0] == (*format))
-			return (find_f[i].f);
+		if (dict[i].sc[0] == (*format))
+			return (dict[i].f);
 		i++;
 	}
 	return (NULL);
 }
+
+
 /**
-  * _printf - function that produces output according to a format.
-  * @format: format (char, string, int, decimal)
-  * Return: size the output text;
-  */
+ * _printf - is a function that formats and prints data
+ * @format: identifier to look for - (char, string, int)
+ * Return: the length of the output string.
+ */
+
 int _printf(const char *format, ...)
 {
 	va_list args;
