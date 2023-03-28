@@ -51,8 +51,8 @@ int print_ptr(va_list p)
 {
 	void *val;
 	char *s = "(nil)";
-	int result, idx;
 	long int helper = 0;
+	int result, idx;
 
 	val = va_arg(p, void*);
 	if (val == NULL)
@@ -65,7 +65,8 @@ int print_ptr(va_list p)
 	}
 	helper = (unsigned long int)val;
 
-	_printf("0x");
+	_putchar('0');
+	_putchar('x');
 	result = print_ptr_helper(helper);
 	return (result + 2);
 }
