@@ -5,47 +5,47 @@
 /**
  * _printf - is a function that formats and prints data
  * @format: identifier to look for - (char, string, int)
- * Return: the length of the output string.
+ * Return: the no_of_char_printedgth of the output string.
  */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int (*val)(va_list);
-	unsigned int len = 0, i;
+	int (*printed_count_getter)(va_list);
+	unsigned int no_of_char_printed = 0, index;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
-	for (i = 0; format[i]; )
+	for (index = 0; format[index]; )
 	{
-		while (format[i] != '%' && format[i])
+		while (format[index] != '%' && format[index])
 		{
-			_putchar(format[i]);
-			len++;
-			i++;
+			_putchar(format[index]);
+			no_of_char_printed++;
+			index++;
 		}
-		if (format[i] == '\0')
-			return (len);
+		if (format[index] == '\0')
+			return (no_of_char_printed);
 
-		val = match_specifier_to_function(&format[i + 1]);
-		if (val != NULL)
+		printed_count_getter = match_specifier_to_function(&format[index + 1]);
+		if (printed_count_getter != NULL)
 		{
-			len += val(args);
-			i += 2;
+			no_of_char_printed += printed_count_getter(args);
+			index += 2;
 			continue;
 		}
-		if (!format[i + 1])
+		if (!format[index + 1])
 			return (-1);
-		_putchar(format[i]);
-		len++;
-		if (format[i + 1] == '%')
-			i += 2;
+		_putchar(format[index]);
+		no_of_char_printed++;
+		if (format[index + 1] == '%')
+			index += 2;
 		else
-			i++;
+			index++;
 	}
 	va_end(args);
 
-	return (len);
+	return (no_of_char_printed);
 }
