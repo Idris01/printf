@@ -16,10 +16,10 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
-	while (find_f[i].specifier)
+	while (find_f[i].sc)
 	{
-		if (find_f[i].specifier[0] == (*format))
-			return (find_f[i].function);
+		if (find_f[i].sc[0] == (*format))
+			return (find_f[i].f);
 		i++;
 	}
 	return (NULL);

@@ -26,8 +26,8 @@ int print_dec(va_list d);
 
 typedef struct dictionary
 {
-	char *specifier;
-	int (*function)(va_list);
+	char *sc;
+	int (*f)(va_list);
 } specifier_dict;
 
 
