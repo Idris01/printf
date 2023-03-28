@@ -3,7 +3,7 @@
 
 /**
  * print_strrev - print string in reverse
- * @r - string
+ * @r: string
  * Return: strlen
  */
 
