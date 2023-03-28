@@ -13,15 +13,23 @@ int _putchar(char c)
 	static char buf[1024];
 	static int i;
 
-	if (c == -1 || i >= 1024)
+	if (c == -1)
 	{
-		write(1, &buf, i);
+		i = 0;
+		return (0);
+	}
+
+	if (c == -2 || i == 1024)
+	{
+		write(1, buf, i);
 		i = 0;
 	}
-	if (c != -1)
+
+	if (c != -1 && c != -2)
 	{
 		buf[i] = c;
 		i++;
+		return (1);
 	}
-	return (1);
+	return (0);
 }
