@@ -34,9 +34,7 @@ int print_ptr_helper(unsigned long int num)
 			arr[idx] = arr[idx] + 39;
 		_putchar(arr[idx] + '0');
 	}
-
 	free(arr);
-
 	return (cnt);
 }
 
@@ -51,8 +49,9 @@ int print_ptr(va_list p)
 {
 	void *val;
 	char *s = "(nil)";
-	long int helper = 0;
-	int result, idx;
+	long int helper;
+	int result;
+	int idx;
 
 	val = va_arg(p, void*);
 	if (val == NULL)
@@ -63,8 +62,8 @@ int print_ptr(va_list p)
 		}
 		return (idx);
 	}
-	helper = (unsigned long int)val;
 
+	helper = (unsigned long int)val;
 	_putchar('0');
 	_putchar('x');
 	result = print_ptr_helper(helper);
