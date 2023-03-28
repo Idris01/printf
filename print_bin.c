@@ -2,7 +2,7 @@
 
 
 /**
-* print_binary - decimal is converted to binary
+* print_bin - decimal is converted to binary
 * @b: unsigned integer to convert to binary
 * print unsigned binary number
 * Return: number of chars printed
