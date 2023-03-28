@@ -9,8 +9,8 @@
  * struct code_format - Struct format
  *
  *
- * @sc: The specifiers
- * @f: The function associated
+ * @specifier: The specifiers
+ * @function: The function associated
  */
 
 typedef struct code_format
