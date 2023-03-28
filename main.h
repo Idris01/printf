@@ -27,7 +27,7 @@ typedef struct code_format
 {
 	char *specifier;
 	int (*function)(va_list);
-} code_f;
+} specifier_dict;
 
 
 #endif /* MAIN_H */
