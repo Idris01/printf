@@ -19,7 +19,7 @@ int print_string(va_list s)
 	while (val[len])
 	{
 		_putchar(val[len]);
-		i++;
+		len++;
 	}
 
 	return (len);
