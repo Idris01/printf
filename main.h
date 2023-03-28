@@ -24,7 +24,7 @@ int print_dec(va_list d);
   * @function: type pointer to function for the conversion specifier
   */
 
-typedef struct format
+typedef struct dictionary
 {
 	char *specifier;
 	int (*function)(va_list);
