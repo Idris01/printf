@@ -6,14 +6,14 @@
 
 
 /**
- * struct code_format - Struct format
+ * struct format - structure for dictionary containing specifier and
+ * their respective functions
  *
- *
- * @specifier: The specifiers
- * @function: The function associated
+ * @specifier: type char pointer of the specifier - could be c, s, i, d, etc.
+ * @function: type pointer to function for the conversion specifier
  */
 
-typedef struct code_format
+typedef struct format
 {
 	char *specifier;
 	int (*function)(va_list);
@@ -30,7 +30,8 @@ typedef struct code_format
 
 int (*match_specifier_to_function(const char *format))(va_list)
 {
-	unsigned int i = 0;
+	unsigned int i;
+
 	specifier_dict dict[] = {
 		{"c", print_char},
 		{"s", print_string},
@@ -39,6 +40,7 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{NULL, NULL}
 	};
 
+	i = 0;
 	while (dict[i].specifier)
 	{
 		if (dict[i].specifier[0] == (*format))

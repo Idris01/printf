@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 /**
  * print_string - writes the character c to stdout
  * @s: The string to print
@@ -9,9 +10,10 @@
 int print_string(va_list s)
 {
 	char *val;
-	int  len = 0;
+	int  len;
 
 	val = va_arg(s, char *);
+	len = 0;
 
 	if (val == NULL)
 		val = "(null)";
