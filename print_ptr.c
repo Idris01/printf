@@ -47,7 +47,7 @@ int print_ptr_helper(unsigned long int num)
  * Return: cnt.
  */
 
-int printf_ptr(va_list p)
+int print_ptr(va_list p)
 {
 	void *val;
 	char *s = "(nil)";
