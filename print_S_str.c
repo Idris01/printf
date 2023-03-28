@@ -42,18 +42,19 @@ int print_S_helper(unsigned int num)
 
 
 /**
- * printf_S - prints S
+ * print_S_str - prints S_str
  * @S: char *
  * Return: string length
  */
 
-int printf_S(va_list S)
+int print_S_str(va_list S)
 {
 	int net, i, len = 0;
 	char *s = va_arg(S, char *);
 
 	if (s == NULL)
 		s = "(null)";
+
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] < 32 || s[i] >= 127)
@@ -67,7 +68,7 @@ int printf_S(va_list S)
 				_putchar('0');
 				len++;
 			}
-			len = len + printf_HEX_aux(net);
+			len = len + print_S_helper(net);
 		}
 		else
 		{

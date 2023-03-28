@@ -22,8 +22,8 @@ int print_X(va_list X);
 int print_hex(unsigned int n, unsigned int c);
 int print_strrev(va_list r);
 int print_rot13(va_list R);
-int printf_S(va_list val);
-int printf_ptr(va_list val);
+int print_S_str(va_list S);
+int print_ptr(va_list p);
 
 
 #endif /* MAIN_H */

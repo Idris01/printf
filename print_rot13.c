@@ -2,12 +2,12 @@
 
 
 /**
- * printf_rot13 - printf str to ROT13
+ * print_rot13 - printf str to ROT13
  * @R: string
  * Return: strlen
  */
 
-int printf_rot13(va_list R)
+int print_rot13(va_list R)
 {
 	char *s;
 	int i, j, flag = 0;

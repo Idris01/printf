@@ -42,9 +42,9 @@ int (*match_specifier_to_function(const char *format))(va_list)
 		{"o", print_oct},
 		{"x", print_x},
 		{"X", print_X},
-		{"S", print_S},
+		{"S", print_S_str},
 		{"p", print_ptr},
-		{"r", print_rev},
+		{"r", print_strrev},
 		{"R", print_rot13},
 		{NULL, NULL}
 	};
