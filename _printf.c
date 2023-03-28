@@ -12,13 +12,13 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int (*val)(va_list);
-	unsigned int i = 0, len = 0;
+	unsigned int len = 0, i;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
-	while (format[i])
+	for (i = 0; format[i]; )
 	{
 		while (format[i] != '%' && format[i])
 		{
@@ -28,6 +28,7 @@ int _printf(const char *format, ...)
 		}
 		if (format[i] == '\0')
 			return (len);
+
 		val = match_specifier_to_function(&format[i + 1]);
 		if (val != NULL)
 		{
@@ -35,15 +36,19 @@ int _printf(const char *format, ...)
 			i += 2;
 			continue;
 		}
+
 		if (!format[i + 1])
 			return (-1);
+
 		_putchar(format[i]);
 		len++;
+
 		if (format[i + 1] == '%')
 			i += 2;
 		else
 			i++;
 	}
 	va_end(args);
+
 	return (len);
 }
