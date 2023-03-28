@@ -1,11 +1,11 @@
 #include "main.h"
 /**
-  * find_function - function that finds formats for _printf
+  * match_specifier_to_function - function that finds formats for _printf
   * calls the corresponding function.
   * @format: format (char, string, int, decimal)
   * Return: NULL or function associated ;
   */
-int (*find_function(const char *format))(va_list)
+int (*match_specifier_to_function(const char *format))(va_list)
 {
 	unsigned int i = 0;
 	code_f find_f[] = {
@@ -48,7 +48,7 @@ int _printf(const char *format, ...)
 		}
 		if (format[i] == '\0')
 			return (len);
-		f = find_function(&format[i + 1]);
+		f = match_specifier_to_function(&format[i + 1]);
 		if (f != NULL)
 		{
 			len += f(args);
