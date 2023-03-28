@@ -24,11 +24,11 @@ int print_dec(va_list d);
   * @function: type pointer to function for the conversion specifier
   */
 
-typedef struct dictionary
+typedef struct code_format
 {
 	char *sc;
 	int (*f)(va_list);
-} specifier_dict;
+} code_f;
 
 
 #endif /* MAIN_H */
